@@ -1,26 +1,11 @@
-#pragma once
-#include <string>
-#include <chrono>
+#include <cstdint>
+#include <vector>
 
-namespace echo_server {
-
-class Message {
-public:
-    explicit Message(std::string text)
-        : text_(std::move(text))
-        , timestamp_(std::chrono::system_clock::now()) 
-    {}
-
-    std::string text() const noexcept { 
-        return text_; 
-    }
-    std::chrono::system_clock::time_point get_timestamp() const noexcept {
-        return timestamp_;
-    }
-
-private:
-    std::string text_;
-    std::chrono::system_clock::time_point timestamp_;
+struct Header {
+  uint32_t size_ = 0;
 };
 
-} // namespace echo_server
+struct Message {
+  Header header_;
+  std::vector<uint8_t> body;
+};

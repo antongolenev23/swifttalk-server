@@ -1,22 +1,6 @@
-#pragma once
 #include <boost/asio.hpp>
-#include <string>
-
-namespace echo_server {
 
 class Connection {
-public:
-    explicit Connection(boost::asio::ip::tcp::socket socket);
-    ~Connection();
-
-    std::string read();
-    void write(const std::string& data);
-    void close();
-
-private:
-    boost::asio::ip::tcp::socket socket_;
-    bool closed_;
+ public:
+ private:
 };
-
-
-} // namespace echo_server
